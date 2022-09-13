@@ -1,1 +1,1 @@
-program assign a random number to the variable n each time it is executed
+Inventing is a combination of brains and materials
