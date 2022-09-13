@@ -1,1 +1,1 @@
-I sometimes suffer from insomnia
+a function that prints 10 times the alphabet, in lowercase
