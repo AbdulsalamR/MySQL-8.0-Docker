@@ -1,1 +1,1 @@
-Hello to world of c programming
+main c
