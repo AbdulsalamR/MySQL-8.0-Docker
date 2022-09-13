@@ -1,1 +1,1 @@
-a C program that prints the size of various types
+Hello to world of c programming
