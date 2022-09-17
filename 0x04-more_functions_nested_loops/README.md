@@ -1,1 +1,1 @@
-function that multiplies two integers
+The numbers speak for themselves
