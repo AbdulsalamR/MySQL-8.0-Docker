@@ -1,1 +1,1 @@
-0x0B C - malloc, free
+function that splits a string into words
