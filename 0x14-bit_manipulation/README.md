@@ -1,1 +1,1 @@
-0x14 bit manipulation
+converts a binary number
