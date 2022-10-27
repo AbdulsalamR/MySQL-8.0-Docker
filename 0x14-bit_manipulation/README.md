@@ -1,1 +1,1 @@
-converts a binary number
+prints the binary representation
