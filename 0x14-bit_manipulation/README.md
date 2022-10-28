@@ -1,1 +1,1 @@
-program password
+function that prints the binary representation
