@@ -1,1 +1,1 @@
-function that reads a text file and prints it
+function that creates a file
