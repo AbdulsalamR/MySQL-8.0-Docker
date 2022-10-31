@@ -1,1 +1,1 @@
-0x15. C - File I/O
+function that reads a text file and prints it
