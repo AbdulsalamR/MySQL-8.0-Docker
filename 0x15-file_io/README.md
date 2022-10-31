@@ -1,1 +1,1 @@
-program that copies the content of a file
+program that displays the information contained in the ELF
