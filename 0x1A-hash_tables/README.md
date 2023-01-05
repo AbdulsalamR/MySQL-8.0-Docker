@@ -1,1 +1,1 @@
-# C - HASH TABLE
+0x1A C - Hash tables
