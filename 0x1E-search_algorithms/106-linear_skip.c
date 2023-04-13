@@ -1,46 +1,49 @@
 #include "search_algos.h"
+#include <stdio.h>
+#include <math.h>
 
 /**
- * linear_skip - skippity skip search singular linked list
- * @list: pointer to head node
- * @value: value to search for
+ * linear_skip - Searches for a value in a sorted skip list of integers.
  *
- * Return: the node found or NULL
+ * @list: Pointer to the head of the skip list to search in.
+ * @value: Value to search for.
+ *
+ * Return: Pointer on the first node where value is located, or NULL if value
+ *         is not present in list or if head is NULL.
  */
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t *last = list;
+    skiplist_t *express = list, *prev = NULL;
 
-	if (!list)
-		return (NULL);
+    if (list == NULL)
+        return (NULL);
 
-	while (list->n < value)
-	{
-		if (!list->express)
-			break;
-		last = list;
-		list = list->express;
-		printf("Value checked at index [%lu] = [%d]\n", list->index, list->n);
-	}
-	if (list->n >= value)
-	{
-		printf("Value found between indexes [%lu] and [%lu]\n",
-				last->index, list->index);
-		list = last;
-	}
-	else
-	{
-		for (last = list; last->next; last = last->next)
-			;
-		printf("Value found between indexes [%lu] and [%lu]\n",
-				list->index, last->index);
-	}
-	while (list)
-	{
-		printf("Value checked at index [%lu] = [%d]\n", list->index, list->n);
-		if (list->n == value)
-			return (list);
-		list = list->next;
-	}
-	return (NULL);
+    while (express->express != NULL && express->n < value)
+    {
+        printf("Value checked at index [%lu] = [%d]\n",
+               express->express->index, express->express->n);
+        prev = express;
+        express = express->express;
+    }
+
+    if (express->n < value)
+    {
+        prev = express;
+        while (express->next != NULL)
+            express = express->next;
+    }
+
+    printf("Value found between indexes [%lu] and [%lu]\n",
+           prev->index, express->index);
+
+    while (prev != express->next)
+    {
+        printf("Value checked at index [%lu] = [%d]\n",
+               prev->index, prev->n);
+        if (prev->n == value)
+            return (prev);
+        prev = prev->next;
+    }
+
+    return (NULL);
 }
