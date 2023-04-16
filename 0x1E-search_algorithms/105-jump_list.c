@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "search_algos.h"
 
 /**
@@ -8,40 +10,37 @@
  *
  * Return: the node found or NULL
  */
-listint_t *jump_list(listint_t *list, size_t size, int value)
+
+listint_t *create_list(int *array, size_t size);
+void print_list(const listint_t *list);
+void free_list(listint_t *list);
+
+/**
+ * main - Entry point
+ *
+ * Return: Always EXIT_SUCCESS
+ */
+int main(void)
 {
-	size_t i = 0, j = sqrt(size), k = 0, last_j = 0;
-	listint_t *last = list;
+    listint_t *list, *res;
+    int array[] = {
+        0, 1, 2, 3, 4, 7, 12, 15, 18, 19, 23, 53, 61, 62, 76, 99
+    };
+    size_t size = sizeof(array) / sizeof(array[0]);
 
-	if (!list)
-		return (NULL);
+    list = create_list(array, size);
+    print_list(list);
 
-	while (list->n < value)
-	{
-		for (last_j = i, last = list, k = 0; list->next && k < j; k++)
-		{
-			list = list->next;
-			i++;
-		}
-		printf("Value checked at index [%lu] = [%d]\n", i, list->n);
-		if (!list->next)
-			break;
-	}
+    res = jump_list(list, size, 53);
+    printf("Found %d at index: %lu\n\n", 53, res->index);
+    res = jump_list(list, size, 2);
+    printf("Found %d at index: %lu\n\n", 2, res->index);
+    res = jump_list(list, size, 999);
+    if (res == NULL)
+        printf("Found %d at index: %p\n", 999, (void *) res);
+    else
+        printf("Found %d at index: %lu\n", 999, res->index);
 
-	if (!list->next)
-		j = last_j;
-	else
-		j = i >= j ? i - j : 0;
-	printf("Value found between indexes [%lu] and [%lu]\n", j, i);
-	i = i >= size ? size - 1 : i;
-	list = last;
-	while (list)
-	{
-		printf("Value checked at index [%lu] = [%d]\n", j, list->n);
-		if (list->n == value)
-			return (list);
-		j++;
-		list = list->next;
-	}
-	return (NULL);
+    free_list(list);
+    return (EXIT_SUCCESS);
 }
